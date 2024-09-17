@@ -4,5 +4,6 @@
 #include "fonction.h"
 
 int main() {
-  return 0;
+    essai_compte();
+    return 0;
 }
