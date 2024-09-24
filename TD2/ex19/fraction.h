@@ -8,6 +8,7 @@ namespace MATH {
     private :
         int numerateur;
         int denominateur;
+        void simplification();
 
     public :
         Fraction(int numerator, int denominator);
@@ -28,8 +29,6 @@ namespace MATH {
         void setDenominator(int denominator);
 
         void setFraction(int num, int den);
-
-        void simplification();
 
         Fraction somme(const Fraction& f1, const Fraction& f2);
         Fraction somme(const Fraction& f);

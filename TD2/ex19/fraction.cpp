@@ -112,7 +112,6 @@ namespace MATH {
         Fraction somme;
         somme.setNumerator((f1.getNumerator()* f2.getDenominator()) + (f1.getDenominator() * f2.getNumerator()));
         somme.setDenominator(f1.getDenominator() * f2.getDenominator());
-        somme.simplification();
         return somme;
     }
 
