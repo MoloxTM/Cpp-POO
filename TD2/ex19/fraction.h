@@ -13,6 +13,7 @@ namespace MATH {
     public :
         Fraction(int numerator, int denominator);
         Fraction();
+        Fraction(int numerator);
 
         ~Fraction();
 
@@ -29,15 +30,7 @@ namespace MATH {
 
         void setFraction(int num, int den);
 
-        void simplification() {
-            int p = pgcd(numerator, denominator);
-            numerator /= p;
-            denominator /= p;
-            if(denominator < 0) {
-                numerator = -numerator;
-                denominator = -denominator;
-            }
-        }
+        void simplification();
 
         Fraction somme(Fraction f, Fraction g);
 

@@ -18,21 +18,43 @@ namespace MATH {
 
     public:
         Fraction() : numerateur(0), denominateur(1) {}
-        Fraction(int num, int den) : numerateur(num), denominateur(den) {
+        Fraction(int num = 0, int den = 1) : numerateur(num), denominateur(den) {
             if (den == 0) {
-                cout << "Erreur : Le dénominateur ne peut pas être zéro. Défini à 1." << endl;
+                cerr << "Erreur : Le dénominateur ne peut pas être zéro. Défini à 1." << endl;
                 denominateur = 1;
             }
+            simplification();
+        }
+        Fraction(int num = 0) {
+            setFractiion(num, 1);
+            simplification();
         }
 
         ~Fraction() {
             cout << "Destruction de Fraction à l'adresse " << this << endl;
         }
 
-        void simplifier() {
+        void simplification() {
             int diviseur = pgcd(numerateur, denominateur);
             numerateur /= diviseur;
             denominateur /= diviseur;
+        }
+
+        void setNumerator(int numerator) {
+            numerateur = numerator;
+        }
+
+        void setDenominator(int denominator) {
+            if(denominator == 0) {
+                cerr << "Erreur : Le dénominateur ne peut pas être zéro. Défini à 1." << endl;
+                denominator = 1;
+            }
+            denominateur = denominator;
+        }
+
+        void setFractiion(int num, int den) {
+            numerateur = num;
+            denominateur = den;
         }
 
         Fraction operator+(const Fraction& autre) const {
