@@ -6,9 +6,8 @@
 namespace MATH {
     class Fraction {
     private :
-        int numerator;
-        int denominator;
-        int pgcd(int a, int b);
+        int numerateur;
+        int denominateur;
 
     public :
         Fraction(int numerator, int denominator);
@@ -18,10 +17,10 @@ namespace MATH {
         ~Fraction();
 
          int getNumerator() {
-            return numerator;
+            return numerateur;
         }
         int getDenominator() {
-            return denominator;
+            return denominateur;
         }
 
         void setNumerator(int numerator);
@@ -32,7 +31,21 @@ namespace MATH {
 
         void simplification();
 
-        Fraction somme(Fraction f, Fraction g);
+        Fraction somme(const Fraction& f1, const Fraction& f2);
+        Fraction somme(const Fraction& f);
 
+        Fraction operator+(const Fraction &autre) const;
+
+        Fraction operator+(int entier) const;
+
+        Fraction operator+(int entier, const Fraction &f);
+
+        Fraction &operator++();
+
+        Fraction operator++(int);
+
+        std::ostream &operator<<(std::ostream &out, const Fraction &f);
+
+        int pgcd(int a, int b);
     };
 }

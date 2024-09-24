@@ -7,6 +7,7 @@ Fraction* myFunction(){
     Fraction* pfy=new Fraction(2,3);
     return pfy;
 }
+
 int main(){
     Fraction f1(3,4);
     Fraction f2(1,6);
