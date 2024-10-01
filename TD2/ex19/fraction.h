@@ -2,8 +2,24 @@
 // Created by andre on 18/09/2024.
 #pragma once
 #include <iostream>
+#include <string>
+#include <cstring>
 
 namespace MATH {
+
+    class FractionException {
+        char info[256];
+    public:
+        FractionException(const char* str) {
+            strcpy(info, str);
+        }
+
+        const char* getInfo() const {
+            return info;
+        }
+    };
+
+
     class Fraction {
     private :
         int numerateur;
@@ -11,8 +27,9 @@ namespace MATH {
         void simplification();
 
     public :
-        Fraction(int numerator, int denominator);
+
         Fraction();
+        Fraction(int numerator, int denominator);
         Fraction(int numerator);
 
         ~Fraction();
@@ -37,14 +54,12 @@ namespace MATH {
 
         Fraction operator+(int entier) const;
 
-        Fraction operator+(int entier, const Fraction &f);
-
         Fraction &operator++();
 
         Fraction operator++(int);
 
-        std::ostream &operator<<(std::ostream &out, const Fraction &f);
+        friend std::ostream &operator<<(std::ostream &out, const Fraction &f);
 
-        int pgcd(int a, int b);
+        static int pgcd(int a, int b);
     };
 }

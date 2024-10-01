@@ -9,9 +9,14 @@ Fraction* myFunction(){
 }
 
 int main(){
-    Fraction f1(3,4);
-    Fraction f2(1,6);
-    Fraction* pf3=new Fraction(1,2);
+    try {
+        Fraction f1(3,4);
+        Fraction f2(1,6);
+        Fraction* pf3=new Fraction(1,2);
+    } catch (FractionException e) {
+        cout<<e.getInfo()<<endl;
+    }
+
     cout<<"ouverture d’un bloc\n";
     Fraction* pf6;
     {
