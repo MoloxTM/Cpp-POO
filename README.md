@@ -1,2 +1,2 @@
 # TD-LO21
- Course to leran the object-oriented programing using C++
+ Course to learn the object-oriented programing using C++
