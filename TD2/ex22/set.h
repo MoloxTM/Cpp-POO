@@ -131,6 +131,13 @@ namespace Set {
 		void ajouter(const Carte& c);
 		void retirer(const Carte& c);
 		void afficher(std::ostream& os);
+		size_t getNbCarte() const {
+			return nb;
+		}
+
+		size_t getnbMax() const {
+			return nbMax;
+		}
 
 		void redim(size_t n);
 	};
