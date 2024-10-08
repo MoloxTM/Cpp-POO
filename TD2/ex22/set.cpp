@@ -202,5 +202,66 @@ namespace Set {
 		delete [] old;
 	}
 
+	const Carte& Combinaison::getCarte1() const {
+		return *c1;
+	}
+
+	const Carte& Combinaison::getCarte2() const {
+		return *c2;
+	}
+
+	const Carte& Combinaison::getCarte3() const {
+		return *c3;
+	}
+
+	bool Combinaison::estUnSET() {
+		bool couleur = verifyCouleur(c1->getCouleur(), c2->getCouleur(), c3->getCouleur());
+		bool forme = verifyForme(c1->getForme(), c2->getForme(), c3->getForme());
+		bool nombre = verifyNombre(c1->getNombre(), c2->getNombre(), c3->getNombre());
+		bool remplissage = verifyRemplissage(c1->getRemplissage(), c2->getRemplissage(), c3->getRemplissage());
+
+		return couleur && forme && nombre && remplissage;
+	}
+
+	Controleur::Controleur() {
+		pioche = new Pioche(jeu);
+	}
+
+	void Controleur::distribuer() {
+		if(plateau.getNbCarte() < 12) {
+			while(!pioche->estVide() && plateau.getNbCarte() < 12) {
+				plateau.ajouter(pioche->piocher());
+			}
+		} else {
+			if(!pioche->estVide()) {
+				plateau.ajouter(pioche->piocher());
+			}
+		}
+	}
+
+
+
+	std::ostream& operator<<(std::ostream& os, const Plateau& plateau) {
+		os << "Plateau :\n";
+
+		// Parcourir toutes les cartes présentes sur le plateau et les afficher
+		for (size_t i = 0; i < plateau.getNbCarte(); ++i) {
+			os << "Carte " << (i + 1) << " : " << *(plateau.getCarte(i)) << "\n";
+		}
+
+		return os;
+	}
+
+	std::ostream& operator<<(std::ostream& os, const Combinaison& combinaison) {
+		os << "Combinaison :\n";
+
+		// Affichage des 3 cartes de la combinaison
+		os << "Carte 1 : " << (combinaison.getCarte1()) << "\n";
+		os << "Carte 2 : " << (combinaison.getCarte2()) << "\n";
+		os << "Carte 3 : " << (combinaison.getCarte3()) << "\n";
+
+		return os;
+	}
+
 
 }

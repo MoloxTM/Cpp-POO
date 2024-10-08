@@ -139,9 +139,77 @@ namespace Set {
 			return nbMax;
 		}
 
+		const Carte* getCarte(size_t i) const {
+			return cartesVisible[i];
+		}
+
 		void redim(size_t n);
 	};
 
+	class Combinaison {
+	private:
+		const Carte* c1 = nullptr;
+		const Carte* c2 = nullptr;
+		const Carte* c3 = nullptr;
+
+		static bool verifyCouleur(const Couleur a,const Couleur b, const Couleur c) {
+			bool same = a == b && b == c && a == c;
+			bool diff = a != b && a != c && b != c;
+			return same || diff;
+		}
+		static bool verifyForme(const Forme a,const Forme b, const Forme c) {
+			bool same = a == b && b == c && a == c;
+			bool diff = a != b && a != c && b != c;
+			return same || diff;
+		}
+		static bool verifyNombre(const Nombre a,const Nombre b, const Nombre c) {
+			bool same = a == b && b == c && a == c;
+			bool diff = a != b && a != c && b != c;
+			return same || diff;
+		}
+		static bool verifyRemplissage(const Remplissage a,const Remplissage b, const Remplissage c) {
+			bool same = a == b && b == c && a == c;
+			bool diff = a != b && a != c && b != c;
+			return same || diff;
+		}
+
+	public:
+		Combinaison(const Carte& a, const Carte& b, const Carte& c) : c1(&a), c2(&b), c3(&c) {}
+		~Combinaison() = default;
+		Combinaison(const Combinaison &cb) = default; //Constructeur par recopie
+		Combinaison &operator=(const Combinaison &cb) = default; //Opérateur d'affectation
+
+		const Carte& getCarte1() const;
+		const Carte& getCarte2() const;
+		const Carte& getCarte3() const;
+
+		bool estUnSET();
+	};
+
+	class Controleur {
+	private:
+		Jeu jeu;
+		Plateau plateau;
+		Pioche* pioche = nullptr;
+	public:
+		Controleur();
+		~Controleur() {
+			delete pioche;
+		}
+
+		Controleur(const Controleur &con) = delete;
+		Controleur &operator=(const Controleur &con) = delete;
+
+		const Plateau& getPlateau() const {
+			return plateau;
+		}
+
+		void distribuer();
+	};
+
+
 	ostream& operator<<(ostream& f, const Plateau& pl);
+	ostream& operator<<(ostream& f, const Combinaison& pl);
 
 }
+
